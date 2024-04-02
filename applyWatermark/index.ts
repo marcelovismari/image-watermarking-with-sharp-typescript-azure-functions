@@ -34,9 +34,9 @@ const httpTrigger: AzureFunction = async function (
     const formWatermarkText = form.get('watermarkText');
 
     const validationErrors = [
-      ...validateAndFetchImageFieldErrors(formImage),
-      ...validateAndFetchTextFieldErrors(formWatermarkText),
-    ];
+      validateAndFetchImageFieldErrors(formImage),
+      validateAndFetchTextFieldErrors(formWatermarkText),
+    ].filter(Boolean);
 
     if (validationErrors.length) {
       context.log(validationErrors);
